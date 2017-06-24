@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 作者信息
+title: About me
 subtitle: Why you'd want to go on a date with me
 ---
 
