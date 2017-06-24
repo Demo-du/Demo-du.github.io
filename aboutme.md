@@ -1,16 +1,20 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: 个人信息
+subtitle: 杜健健
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+### 简介:
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+- 南京航空航天大学硕士研究生
+- skill：java、python、c
+- 全国研究生数学建模竞赛全国二等奖
+- 挑战杯科技作品竞赛江苏省三等奖
+- 中国大学生物联网大赛华东赛区一等奖，全国三等奖
 
-What else do you need?
 
-### my history
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+### 爱好
+
+编程，羽毛球，相关技术问题可一起讨论。邮箱：jianrobot@126.com
+
