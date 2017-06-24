@@ -23,7 +23,7 @@ description: 杜健健的博客
 
 # List of links in the navigation bar
 navbar-links:
-  About Me: "南京航空航天大学硕士研究生杜健健"
+  About Me: "/aboutme.md"
   Resources:
     - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
     - Learn markdown: "http://www.markdowntutorial.com/"
