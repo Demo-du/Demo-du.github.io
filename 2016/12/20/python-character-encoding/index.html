@@ -7,13 +7,20 @@
 
     
 
-    <title>Loo&#39;s Blog</title>
+    <title>容易撩倒人的Python字符编码问题 | Loo&#39;s Blog</title>
     <meta name="author" content="三好先生">
+    
+    <meta name="description" content="如果你正在使用 Python2.x ，那么你一定遇到了一些或者很多关于字符编码解码报错情况。是的，我遇到了不少，我决定写这篇文章，为了让自己加深对 python 的字符编码的理解。
+相关概念
+计算机中的一切均为bytes(字节)。硬盘中的文件为一系列的byte组成，网络中传输的只有byte。所有的信息，在你写的程序中进进出出的，均由byte组成。
+字符：我们现在看到的英文字母、中文汉字就是经过计算机解码后对人类友好的抽象符号的表现
+encode() 编码： 将字符转换成二进制流
+decode() 解码： 将二进制流转换成字符">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="容易撩倒人的Python字符编码问题">
     <meta property="og:site_name" content="Loo&#39;s Blog.让故事有营养。">
 
     
@@ -240,62 +247,42 @@
 
 
     <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/Python/">Python</a>
+
+
         
 
-<div class="slider">
-    <ul class="slides">
-    
-       <li>
-           <a href="/">
-               <img class="slider-image" src="http://ocf3ikxr2.bkt.clouddn.com/somethingelse/weatherisbeautiful.jpg">
-               <div class="caption left-align">
-                 <h4>Hello World!
-                 <h5 class="light grey-text text-lighten-3">愿上帝赐予我平静，让我能接纳我无法改变的事，愿上帝赐予我勇气，让我能改变我可以改变的事，并赐予我智慧，让我能分辨这两者的不同。</h5>
-               </h4></div>
-           </a>
-       </li>
-    
-       <li>
-           <a href="javascript:;">
-               <img class="slider-image" src="http://ocf3ikxr2.bkt.clouddn.com/somethingelse/fall_leaves.jpg">
-               <div class="caption center-align">
-                 <h4>Everything will be fine.
-                 <h5 class="light grey-text text-lighten-3">To love, to live, and don&#39;t miss a thing. Make it better.</h5>
-               </h4></div>
-           </a>
-       </li>
-    
-       <li>
-           <a href="javascript:;">
-               <img class="slider-image" src="http://ocf3ikxr2.bkt.clouddn.com/python/pythoner.png">
-               <div class="caption right-align">
-                 <h4>人生苦短，必须性感.
-                 <h5 class="light grey-text text-lighten-3">Life is short, you need Python.</h5>
-               </h4></div>
-           </a>
-       </li>
-    
-   </ul>
- </div>
+        
+    </div>
+</nav>
 
-
-
-<div id="article-list" class="container main-container">
-    
-        <article class="simple-article">
+<article>
     <div class="card">
         <div class="card-content">
+            
+
             <div class="article-title">
                 
     
-        <h1 class="indigo-link-context"><a href="/2016/12/20/python-character-encoding/">容易撩倒人的Python字符编码问题</a></h1>
+        <h1>容易撩倒人的Python字符编码问题</h1>
     
 
 
             </div>
-
             <time class="pink-link-context" datetime="2016-12-20T06:05:44.000Z"><a href="/2016/12/20/python-character-encoding/">2016-12-20</a></time>
 
+            <div style="float: right;color: #E91E63">
+    <span id="busuanzi_container_page_pv" style="display: none;">
+    阅读次数 <span id="busuanzi_value_page_pv"></span></span>
+</div>
             
     <div class="tags-row">
         
@@ -306,422 +293,148 @@
     </div>
 
 
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#相关概念"><span class="section table-of-contents-text">相关概念</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#coding-utf-8和sys-getdefaultencoding"><span class="section table-of-contents-text">coding=utf-8和sys.getdefaultencoding()</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#关于sys-stdout-encoding"><span class="section table-of-contents-text">关于sys.stdout.encoding</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Python2-x的字符编码问题"><span class="section table-of-contents-text">Python2.x的字符编码问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Python3-x-的字符编码问题"><span class="section table-of-contents-text">Python3.x 的字符编码问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#总结与建议"><span class="section table-of-contents-text">总结与建议</span></a></li></ol>
+</div>
 
-            
-                <div class="entry pink-link-context">
-                    <p>如果你正在使用 Python2.x ，那么你一定遇到了一些或者很多关于字符编码解码报错情况。是的，我遇到了不少，我决定写这篇文章，为了让自己加深对 python 的字符编码的理解。</p>
+
+            <div class="entry pink-link-context">
+                <p>如果你正在使用 Python2.x ，那么你一定遇到了一些或者很多关于字符编码解码报错情况。是的，我遇到了不少，我决定写这篇文章，为了让自己加深对 python 的字符编码的理解。</p>
 <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
 <li>计算机中的一切均为bytes(字节)。硬盘中的文件为一系列的byte组成，网络中传输的只有byte。所有的信息，在你写的程序中进进出出的，均由byte组成。</li>
 <li>字符：我们现在看到的英文字母、中文汉字就是经过计算机解码后对人类友好的抽象符号的表现</li>
 <li>encode() 编码： 将字符转换成二进制流</li>
-<li>decode() 解码： 将二进制流转换成字符
-                </li></ul></div>
-            
-        </div>
+<li>decode() 解码： 将二进制流转换成字符<a id="more"></a>
+</li>
+</ul>
+<h2 id="coding-utf-8和sys-getdefaultencoding"><a href="#coding-utf-8和sys-getdefaultencoding" class="headerlink" title="coding=utf-8和sys.getdefaultencoding()"></a>coding=utf-8和sys.getdefaultencoding()</h2><p>如果我们的 py文件中包含中文，往往需要在第一行或者第二行添加：<br><code># coding=utf-8</code>  或者  <code># -*- coding: utf-8 -*-</code></p>
+<p>这表示声明该 py文件中定义的字符串变量使用的编码方式为 utf-8。<br>python2.x 中，</p>
+<pre><code class="python">&gt;&gt;&gt; sys.getdefaultencoding()
+&#39;ascii&#39;
+</code></pre>
+<p>python3.x 中，</p>
+<pre><code class="python">&gt;&gt;&gt; sys.getdefaultencoding()
+&#39;utf-8&#39;
+</code></pre>
+<p>在使用 encode() 和 decode() 的时候，如果不传入任何参数，那么 python 解释器就会使用 sys.getdefaultencoding() 所指代的编码解码方式进行 encode() 和 decode()。</p>
+<h2 id="关于sys-stdout-encoding"><a href="#关于sys-stdout-encoding" class="headerlink" title="关于sys.stdout.encoding"></a>关于sys.stdout.encoding</h2><p>在 Windows 系统下使用 python，特别要注意编码问题，因为我们一般都会使用 <code>coding=utf-8</code> 将 py文件中定义的字符串的编码方式设置为 UTF-8，而 Windows 系统下默认的编码方式为 GBK，即 <code>sys.stdout.encoding</code> 为 GBK（说明：微软的 CP936 不等于 GBK，它们有几十个不太常用的字符不同，所以绝大多数情况下感觉不到差异）。<br>如果我们不显式地将 bytes 编码成 unicode，然后再解码成 GBK的话，往往会出现乱码的情况，这一点需要特别注意。所以说，明确输出平台所采用的默认编码方式很重要，搞清楚了这一点解决 python 中文乱码的问题就容易多了。</p>
+<h2 id="Python2-x的字符编码问题"><a href="#Python2-x的字符编码问题" class="headerlink" title="Python2.x的字符编码问题"></a>Python2.x的字符编码问题</h2><p>在 Python2.x 中，有三大类 string 类型，unicode（text string），str（byte string，二进制数据），basestring，是前两者的父类。具体分析如下：</p>
+<ol>
+<li><p>str 和 unicode 都是 basestring 的子类，不可被调用或实例化，仅可用于类型检查。isinstance(obj, basestring) 等价于 isinstance(obj, (str, unicode))。</p>
+<pre><code class="python">my_str = &#39;我们&#39;
+my_unicode = u&#39;我们&#39;
 
-        
-        <div class="card-action pink-link-context">
-            <a href="/2016/12/20/python-character-encoding/">阅读全文</a>
-        </div>
-        
-    </div>
-</article>
+&gt;&gt;&gt; isinstance(my_str, basestring)
+True
 
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
+&gt;&gt;&gt; isinstance(my_unicode, basestring)
+True
+</code></pre>
+</li>
+<li><p>str 等价于 bytes，是由unicode经过编码(encode)后的字节组成的字节串。在 python2.x 中你不加任何修饰直接定义的字符串，其实是字节串，切记这一点。</p>
+<pre><code class="python">&gt;&gt;&gt; str == bytes
+True
+
+&gt;&gt;&gt; &#39;我们&#39; == b&#39;我们&#39;
+True
+
+&gt;&gt;&gt; b&#39;我们&#39; == str(&#39;我们&#39;)
+True
+
+&gt;&gt;&gt; b&#39;我们&#39;
+&#39;\xce\xd2\xc3\xc7&#39;
+
+&gt;&gt;&gt; len(&#39;我们&#39;)
+4
+#len(&#39;我们&#39;)在windows平台下长度为4（默认编码为GBK），Linux平台下长度为6（默认编码为UTF-8）。
+</code></pre>
+</li>
+<li><p>unicode 才是真正意义上的字符串，是由 str 解码(decode)后的字符组成的字符串。定义unicode 字符串，直接在 string 前面加前缀 <strong>u</strong> 即可。</p>
+<pre><code class="python">&gt;&gt;&gt; len(u&#39;我们&#39;)
+2
+
+&gt;&gt;&gt; unicode(&#39;我们&#39;, &#39;utf-8&#39;)
+u&#39;\u6211\u4eec&#39;
+
+&gt;&gt;&gt; &#39;我们&#39;.decode(&#39;utf-8&#39;)
+u&#39;\u6211\u4eec&#39;
+
+#无论是在Windows下还是在Linux下 u&#39;我们&#39; 的字符串长度都为2，这正是我们所想要的结果。
+</code></pre>
+</li>
+<li><p>相互转换<br><strong>str –(decode)–&gt; unicode –(encode)–&gt; str</strong></p>
+</li>
+</ol>
+<h2 id="Python3-x-的字符编码问题"><a href="#Python3-x-的字符编码问题" class="headerlink" title="Python3.x 的字符编码问题"></a>Python3.x 的字符编码问题</h2><p>在 python3.x 中，字符编码问题就变得不那么混乱了，具体看下面：</p>
+<ol>
+<li><p>bytes 为字节串，如果你想定义一个字节串，不像在 python2.x 中那样直接定义就行了。在 python3.x 中，一般使用下面两种方式定义一个字节串：</p>
+<pre><code class="python">#第一种方法，加上 b 前缀
+&gt;&gt;&gt; b&#39;I am a byte&#39;
+
+#第二种方法：
+&gt;&gt;&gt; bytes(something, encodeing=&#39;xxx&#39;)
+</code></pre>
+<p>如果想要定义一个含有中文的字节串，必须使用第二种方法，并且将 <code>encoding</code>参数设置为你为该 py文件设置的字符编码方式，即你在 py文件的头部设置的类似于 <code># coding: utf-8</code> 中的编码方式。</p>
+</li>
+<li><p>str，采用 unicode 方式编码的字符串。无论是 <code>&#39;我们&#39;</code> 还是 <code>u&#39;我们&#39;</code>，都是str对象。</p>
+<pre><code class="python">&gt;&gt;&gt; isinstance(&#39;我们&#39;,str)
+True
+
+&gt;&gt;&gt; isinstance(u&#39;我们&#39;,str)
+True
+
+&gt;&gt;&gt; len(&#39;我们&#39;)
+2
+</code></pre>
+</li>
+<li><p>相互转换<br><strong>bytes –(decode)–&gt; str –(encode)–&gt; bytes</strong></p>
+</li>
+</ol>
+<h2 id="总结与建议"><a href="#总结与建议" class="headerlink" title="总结与建议"></a>总结与建议</h2><ol>
+<li>在 python2.x 中，对两个字符串进行操作时，如果这两个字符串有一个是 unicode 编码，有一个是非 unicode 编码，python 会自动使用 sys.getdefaultencoding() 的解码方式将非 unicode 编码的字符串 decode 成 unicode 编码，再进行字符串操作，python2.x 悄悄掩盖掉了 byte 到 unicode 的转换，很容易出现问题。而在 python3.x 中，取消了 bytes 和 unicode 之间的自动隐性转换。</li>
+<li>在需要转换的时候，全部显式转换。从字节解码成文本，用 your_string.decode(encoding)，从文本编码成字节，用 your_string.encode(encoding)。</li>
+<li>任何可能包含中文的字符串，请全部加上 <strong>u</strong> 前缀，这能减少很多问题。</li>
+<li>从外部（网页、文件、数据库等）读取数据时，读取的是字节串，应该将其 decode 成 unicode进行使用；当需要向外部输出字符串时，用该外部媒介所能接收的编码形式 encode 字符串后再传递给它。</li>
+</ol>
+<p>参考：</p>
+<ul>
+<li><a href="http://ajucs.com/2015/11/10/Python-character-encoding-explained.html" rel="external nofollow noopener noreferrer" target="_blank">字符编码及Python中文处理精解</a></li>
+<li><a href="http://in355hz.iteye.com/blog/1860787" rel="external nofollow noopener noreferrer" target="_blank">也谈 Python 的中文编码处理</a></li>
+<li><a href="http://pycoders-weekly-chinese.readthedocs.io/en/latest/issue5/unipain.html" rel="external nofollow noopener noreferrer" target="_blank">Unicode之痛</a></li>
+<li><a href="http://www.cnblogs.com/Xjng/p/5093905.html" rel="external nofollow noopener noreferrer" target="_blank">不得不知道的Python字符串编码相关的知识</a></li>
+</ul>
+
                 
-    
-        <h1 class="indigo-link-context"><a href="/2016/12/01/duoshuo-comments-notifier/">完善多说评论的邮件提醒功能</a></h1>
-    
+
+
+<p class="pink-link-context">
+    <a href="/2016/12/01/duoshuo-comments-notifier/" rel="next" title="完善多说评论的邮件提醒功能">
+    下一篇：完善多说评论的邮件提醒功能
+  </a>
+</p>
 
 
             </div>
-
-            <time class="pink-link-context" datetime="2016-12-01T12:16:12.000Z"><a href="/2016/12/01/duoshuo-comments-notifier/">2016-12-01</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/python/" class="chip pink lighten-1">python</a>
-        
-            <a href="/tags/邮件提醒/" class="chip pink lighten-1">邮件提醒</a>
-        
-            <a href="/tags/多说评论/" class="chip pink lighten-1">多说评论</a>
-        
-    </div>
-
-
-
-            
-                <div class="entry pink-link-context">
-                    <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>如果你的博客使用了多说评论，那么很不幸，你的博客有了新留言你收不到提醒。多说评论系统设定的是只有别人回复了你的留言才会邮件通知你。虽然刚开始写博客的时候，给我们留言的人很少，或者也许以后也没有多少留言（<strong>此处应该有一个笑哭的表情</strong>，此刻看看窗外，那只猫也在嘲笑我），不过如果有人给我们留言了，那我们及时回复他也是一种尊重他的表现，所以用 python 编写了一个脚本解决多说评论的不完美提醒。
-                </p></div>
-            
+			
         </div>
-
-        
-        <div class="card-action pink-link-context">
-            <a href="/2016/12/01/duoshuo-comments-notifier/">阅读全文</a>
-        </div>
-        
     </div>
 </article>
 
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2016/10/21/A-bridge-to-YouCompleteMe/">帮助你更快地安装vim插件 YouCompleteMe</a></h1>
-    
 
 
-            </div>
 
-            <time class="pink-link-context" datetime="2016-10-21T12:05:42.000Z"><a href="/2016/10/21/A-bridge-to-YouCompleteMe/">2016-10-21</a></time>
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href,
+        sourceId: "",
+        productKey: "cb18f6499b78401b96e69352030daf1a",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
 
-            
-    <div class="tags-row">
-        
-            <a href="/tags/YouCompleteMe/" class="chip pink lighten-1">YouCompleteMe</a>
-        
-            <a href="/tags/Vim/" class="chip pink lighten-1">Vim</a>
-        
-            <a href="/tags/Plugin/" class="chip pink lighten-1">Plugin</a>
-        
-    </div>
 
-
-
-            
-                <div class="entry pink-link-context">
-                    <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>之前在刚开始使用Linux系统时，需要配置一个称手的 vim 学习编程。偶然的机会，加入了 细学python QQ群，这个群给了我很多帮助和启发，谢谢。群主 <a href="https://github.com/denglj" rel="external nofollow noopener noreferrer" target="_blank">阿驹</a> 做了一个教学视频，推荐我们使用 <strong><a href="https://github.com/wklken/k-vim" rel="external nofollow noopener noreferrer" target="_blank">k-vim</a></strong>。配置 vim，肯定少不了智能补全插件 <a href="https://github.com/Valloric/YouCompleteMe" rel="external nofollow noopener noreferrer" target="_blank">YouCompleteMe</a>，但是国内安装这个插件很慢，很容易安装失败，因为这个插件异常大，超过 200M。我记得很清楚，我安装了两次才成功安装好这个插件，而且耗时很久。我想应该很多人都会遇到这个问题，会很苦恼。
-                </p></div>
-            
-        </div>
-
-        
-        <div class="card-action pink-link-context">
-            <a href="/2016/10/21/A-bridge-to-YouCompleteMe/">阅读全文</a>
-        </div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2016/10/18/linux-utility-skills/">关于Linux的一些实用技巧</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2016-10-18T12:15:37.000Z"><a href="/2016/10/18/linux-utility-skills/">2016-10-18</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Linux/" class="chip pink lighten-1">Linux</a>
-        
-            <a href="/tags/utility/" class="chip pink lighten-1">utility</a>
-        
-    </div>
-
-
-
-            
-                <div class="entry pink-link-context">
-                    <p>此博文会分享给大家一些我在使用Linux系统过程中学到或者总结的实用技巧。既然选择了计算机编程这个行业，那么熟练使用Linux是非常有必要的。所以如果你是编程的初学者，建议你要学习使用Linux系统，你可以随便看看一些互联网招聘平台，上面发布的招聘信息里面，其中大部分都提到了对Linux系统的要求。所以，骚年，别犹豫了，就一个字：学！
-                </p></div>
-            
-        </div>
-
-        
-        <div class="card-action pink-link-context">
-            <a href="/2016/10/18/linux-utility-skills/">阅读全文</a>
-        </div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2016/10/08/scan-ip-and-port/">使用多线程、多进程和协程扫描ip和可用的端口</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2016-10-08T12:09:24.000Z"><a href="/2016/10/08/scan-ip-and-port/">2016-10-08</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/python/" class="chip pink lighten-1">python</a>
-        
-            <a href="/tags/threading/" class="chip pink lighten-1">threading</a>
-        
-            <a href="/tags/multiprocessing/" class="chip pink lighten-1">multiprocessing</a>
-        
-    </div>
-
-
-
-            
-                <div class="entry pink-link-context">
-                    <p>此脚本意在学习多线程threading、多进程multiprocessing、协程以及subprocess的使用。使用subprocess调用系统的ping命令检测给定的ip地址是否能ping通，使用socket扫描给定的ip地址有哪些可用的端口。
-                </p></div>
-            
-        </div>
-
-        
-        <div class="card-action pink-link-context">
-            <a href="/2016/10/08/scan-ip-and-port/">阅读全文</a>
-        </div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2016/09/21/simple-markdown-parser-by-python/">Simple Markdown Parser by Python</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2016-09-21T12:32:15.000Z"><a href="/2016/09/21/simple-markdown-parser-by-python/">2016-09-21</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/python/" class="chip pink lighten-1">python</a>
-        
-            <a href="/tags/Markdown/" class="chip pink lighten-1">Markdown</a>
-        
-    </div>
-
-
-
-            
-                <div class="entry pink-link-context">
-                    <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>此小项目来源于《python基础教程》一书中最后的10个项目中的第一个项目。我借鉴项目中的一些优秀的分析方法，经过改编，编写了这个简易的markdown文件解析器。目前实现了解析标题、列表、代码块、图片链接、超链接、段落等常用的语法。
-                </p></div>
-            
-        </div>
-
-        
-        <div class="card-action pink-link-context">
-            <a href="/2016/09/21/simple-markdown-parser-by-python/">阅读全文</a>
-        </div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2016/09/05/deploy-django-uwsgi/">部署django：uwsgi+supervisor+nginx</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2016-09-05T04:34:00.000Z"><a href="/2016/09/05/deploy-django-uwsgi/">2016-09-05</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/python/" class="chip pink lighten-1">python</a>
-        
-            <a href="/tags/Django/" class="chip pink lighten-1">Django</a>
-        
-            <a href="/tags/supervisor/" class="chip pink lighten-1">supervisor</a>
-        
-            <a href="/tags/nginx/" class="chip pink lighten-1">nginx</a>
-        
-            <a href="/tags/uwsgi/" class="chip pink lighten-1">uwsgi</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2016/09/03/deploy-django-gunicorn/">部署django：gunicorn+supervisor+nginx</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2016-09-03T14:33:11.000Z"><a href="/2016/09/03/deploy-django-gunicorn/">2016-09-03</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/python/" class="chip pink lighten-1">python</a>
-        
-            <a href="/tags/Django/" class="chip pink lighten-1">Django</a>
-        
-            <a href="/tags/gunicorn/" class="chip pink lighten-1">gunicorn</a>
-        
-            <a href="/tags/supervisor/" class="chip pink lighten-1">supervisor</a>
-        
-            <a href="/tags/nginx/" class="chip pink lighten-1">nginx</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2016/08/25/practical-scripts-for-me/">工作、生活中用到的实用小脚本</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2016-08-25T07:09:53.000Z"><a href="/2016/08/25/practical-scripts-for-me/">2016-08-25</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/python/" class="chip pink lighten-1">python</a>
-        
-            <a href="/tags/script/" class="chip pink lighten-1">script</a>
-        
-    </div>
-
-
-
-            
-                <div class="entry pink-link-context">
-                    <p>本文主要包含我用于解决一些小问题的实用脚本（至少对于我来说是这样的）。我所用的系统是Windows 10，虚拟机安装了Ubuntu。主要工作环境还是在Windows下进行的（目前是这样）。其实我编写的这些小脚本的功能Windows已经能够很好解决，比如下面第一个小脚本，用于搜索出目录下的所有bak文件，然后删除，使用Windows的文件搜索功能也能很快解决。我编写这些小脚本的目的主要是为了熟悉使用python。
-                </p></div>
-            
-        </div>
-
-        
-        <div class="card-action pink-link-context">
-            <a href="/2016/08/25/practical-scripts-for-me/">阅读全文</a>
-        </div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2016/08/24/fetch-the-win-num-of-pailiesan/">Python爬取历年排列三的中奖号码并简单分析</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2016-08-24T11:55:59.000Z"><a href="/2016/08/24/fetch-the-win-num-of-pailiesan/">2016-08-24</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/python/" class="chip pink lighten-1">python</a>
-        
-            <a href="/tags/爬虫/" class="chip pink lighten-1">爬虫</a>
-        
-            <a href="/tags/数据分析/" class="chip pink lighten-1">数据分析</a>
-        
-    </div>
-
-
-
-            
-                <div class="entry pink-link-context">
-                    <p>编写此脚本使我熟悉了BeautifulSoup、pandas、matplotlib以及数据库的操作使用。</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
-<li>python 2.7</li>
-<li>BeautifulSoup4</li>
-<li>pandas 0.16.2</li>
-<li>matplotlib 1.4.3
-                </li></ul></div>
-            
-        </div>
-
-        
-        <div class="card-action pink-link-context">
-            <a href="/2016/08/24/fetch-the-win-num-of-pailiesan/">阅读全文</a>
-        </div>
-        
-    </div>
-</article>
-
-    
-
-    <ul class="pagination center-align">
-    <li class="disabled">
-        <a href="/"><i class="fa fa-angle-left"></i></a>
-    </li>
-    
-    
-        <li class="active pink"><a href="/">1</a></li>
-    
-        <li class="waves-effect"><a href="/page/2">2</a></li>
-    
-    
-    <li class="">
-        <a href="/page/2/"><i class="fa fa-angle-right"></i></a>
-    </li>
- </ul>
 
 </div>
 
