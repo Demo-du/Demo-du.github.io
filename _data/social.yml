@@ -1,5 +1,5 @@
 - sitename: GitHub
-  name: mzlogin
+  name: Demo-du
   url: https://github.com/Demo-du
 
 
@@ -8,6 +8,4 @@
   url: http://Demo-du.github.io
 
 
-
-- sitename: email
-  name: jianrobot@126.com
+- name: email ：jianrobot@126.com
