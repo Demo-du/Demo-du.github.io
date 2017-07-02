@@ -1,52 +1,49 @@
 ---
-layout: base
+layout: default
 ---
-
-{% include header.html type="post" %}
-
+<section class="collection-head small geopattern" data-pattern-id="{{ page.title | truncate: 15, ''}}">
 <div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-      <article role="main" class="blog-post">
-        {{ content }}
-      </article>
-
-      {% if page.tags.size > 0 %}
-        <div class="blog-tags">
-          Tags:
-          {% if site.link-tags %}
-          {% for tag in page.tags %}
-            <a href="/tag/{{ tag }}">{{ tag }}</a>
-          {% endfor %}
-          {% else %}
-            {{ page.tags | join: ", " }}
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">{{ page.title }}</h1>
+        <div class="collection-info">
+          {% if page.date %}
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> {{ page.date | date: "%Y/%m/%d" }}
+          </span>
           {% endif %}
+          {% for cat in page.categories %}
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="/categories/#{{ cat }}" title="{{ cat }}">{{ cat }}</a>
+          </span>
+          {% endfor %}
         </div>
-      {% endif %}
-
-      {% if page.social-share %}
-        {% include social-share.html %}
-      {% endif %}
-
-      <ul class="pager blog-pager">
-        {% if page.previous.url %}
-        <li class="previous">
-          <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
-        </li>
-        {% endif %}
-        {% if page.next.url %}
-        <li class="next">
-          <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
-        </li>
-        {% endif %}
-      </ul>
-
-      {% if page.comments %}
-        <div class="disqus-comments">
-          {% include disqus.html %}
-        </div>
-      {% endif %}
+      </div>
     </div>
   </div>
 </div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    {{ content }}
+    </article>
+    <div class="share">
+      {% include sns-share.html %}
+    </div>
+    <div class="comment">
+      {% include comments.html %}
+    </div>
+  </div>
+  <div class="column one-fourth">
+    {% include sidebar-search.html %}
+    {% include sidebar-qrcode.html %}
+    {% include sidebar-post-nav.html %}
+  </div>
+</div>
+</section>
+<!-- /section.content -->
