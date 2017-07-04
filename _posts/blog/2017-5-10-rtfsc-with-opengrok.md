@@ -20,16 +20,27 @@ mysql –u root –p然后输入密码
 查看字符集设置
 
 +--------------------------+----------------------------+
+
 | Variable_name                 | Value                               |
+
 +--------------------------+----------------------------+
+
 | character_set_client         | utf8                                  |
+
 | character_set_connection  | utf8                                 |
+
 | character_set_database    | latin1                                |
+
 | character_set_filesystem   | binary                               |
+
 | character_set_results       | utf8                                  |
+
 | character_set_server        | utf8                                  |
+
 | character_set_system       | utf8                                 |
+
 | character_sets_dir            | /usr/share/mysql/charsets/ |
+
 +--------------------------+----------------------------+
 
 
@@ -39,11 +50,17 @@ mysql –u root –p然后输入密码
 ## 3.修改my.ini
 
 此文件在笔者的电脑里位于/etc/mysql文件夹里，找到后可以进行修改，在后面加入：
+
 [mysqld]
+
 default-character-set=utf8
+
 default-storage-engine=INNODB
+
 sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+
 [mysql]
+
 default-character-set=utf8
 
 问题一般就可以解决了
