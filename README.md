@@ -15,9 +15,8 @@
 
 ## 效果预览
 
-**[在线预览 &rarr;](http://mazhuang.org)**
 
-![screenshot home](http://De,o-du.github.io/assets/images/screenshots/home.png)
+![screenshot home](http://Demo-du.github.io/assets/images/screenshots/home.png)
 
 ## Fork 指南
 
