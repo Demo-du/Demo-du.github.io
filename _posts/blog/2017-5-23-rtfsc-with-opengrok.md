@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 配置Struts2出现The request resource….is not available问题 
-categories:java EE
+categories: java EE
 description: 
-keywords:java,Struts2
+keywords: java,Struts2
 ---
+
 早上兴致勃勃的打算写一个Struts2的小项目，添加库，各种配置后，然后测试，结果。。。。。。
 
 ![OpenGrok Search and Browse](/images/posts/java/error1.png)
