@@ -14,7 +14,7 @@ Cease to struggle and you cease to live.
 
 ### 简介:
 
-# 杜健健:
+#### 杜健健
 
 - 南京航空航天大学硕士研究生
 - 研究方向：计算机仿真
