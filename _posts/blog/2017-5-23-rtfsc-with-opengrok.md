@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 配置Struts2出现The request resource….is not available问题 
-categories: javaEE
+categories: JavaEE
 description: 
 keywords: java,Struts2
 ---
