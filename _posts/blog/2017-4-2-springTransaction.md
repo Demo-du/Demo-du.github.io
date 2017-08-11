@@ -73,19 +73,19 @@ C3P0的autoCommitOnClose属性默认是false,没有十分必要不要动它。�
 spring-servlet.xml
 
 
- 1 <!-- transaction support-->
- 
- 2 <!-- PlatformTransactionMnager -->
- 
- 3 <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
- 
- 4     <property name="dataSource" ref="dataSource" />
- 
- 5 </bean>
- 
- 6 <!-- enable transaction annotation support -->
- 
- 7 <tx:annotation-driven transaction-manager="txManager" />
+	 1 <!-- transaction support-->
+	 
+	 2 <!-- PlatformTransactionMnager -->
+	 
+	 3 <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	 
+	 4     <property name="dataSource" ref="dataSource" />
+	 
+	 5 </bean>
+	 
+	 6 <!-- enable transaction annotation support -->
+	 
+	 7 <tx:annotation-driven transaction-manager="txManager" />
 
 
 
