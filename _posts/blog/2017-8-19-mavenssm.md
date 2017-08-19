@@ -1,12 +1,12 @@
 ---
 layout: post
 title: maven搭建SSM项目教程 
-categories: JavaEE maven
+categories: JavaEE Maven
 description: 
 keywords: 
 ---
 
-今天用maven尝试了一下搭建SSM的项目，遇到了一些问题并得到了解决。本文以我之前做的一个南航人事管理系统项目（现用maven构建类一遍）为例，下面是具体操作步骤：
+今天用maven尝试了一下搭建SSM的项目，遇到了一些问题并得到了解决。本文以我之前做的一个南航人事管理系统项目（现用maven构建一遍）为例，下面是具体操作步骤：
 
 
 ## 一、准备环境：
