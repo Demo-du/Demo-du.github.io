@@ -21,13 +21,13 @@ keywords:
 
 2、Window——>Preferences——>Java——>Installed JREs——>Add
 
-(/images/posts/819/1.png)
+![ssm](/images/posts/819/1.png)
 
 ## 三、新建Maven项目：
 
 进入Myeclipse,选择File-New Project-web project
 
-(/images/posts/819/2.jpg)
+![ssm](/images/posts/819/2.jpg)
 
 然后一直点下去，将Group Id，Artifact Id，version等设置好。
 
@@ -35,10 +35,189 @@ keywords:
 
 右击项目，选择Properties进行一些配置：
 
-(/images/posts/819/3.png)
+![ssm](/images/posts/819/3.png)
 
 
 这样，maven的javaweb项目构建好了，下面我们进行整合搭建SSM（spring MVC + Spring + Mybatis），首先对pox.xml配置依赖的内容：
+```
+
+	    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+	      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">    
+		<modelVersion>4.0.0</modelVersion>    
+		<groupId>com.ssm</groupId>    
+		<artifactId>Maven_Project</artifactId>    
+		<packaging>war</packaging>    
+		<version>0.0.1-SNAPSHOT</version>    
+		<name>Maven_Project Maven Webapp</name>    
+		<url>http://maven.apache.org</url>    
+		  
+		<!-- 用来设置版本号 -->    
+		<properties>    
+		    <srping.version>4.0.2.RELEASE</srping.version>    
+		    <mybatis.version>3.2.8</mybatis.version>    
+		    <slf4j.version>1.7.12</slf4j.version>    
+		    <log4j.version>1.2.17</log4j.version>    
+		</properties>    
+		<!-- 用到的jar包 -->    
+		<dependencies>    
+		    <!-- 单元测试 -->    
+		    <dependency>    
+		        <groupId>junit</groupId>    
+		        <artifactId>junit</artifactId>    
+		        <version>4.11</version>    
+		        <!-- 表示开发的时候引入，发布的时候不会加载此包 -->      
+		        <scope>test</scope>    
+		    </dependency>    
+		    <!-- java ee包 -->    
+		    <dependency>    
+		        <groupId>javax</groupId>    
+		        <artifactId>javaee-api</artifactId>    
+		        <version>7.0</version>    
+		    </dependency>    
+		    <!-- spring框架包 start -->    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-test</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-core</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-oxm</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-tx</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-jdbc</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-aop</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-context</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-context-support</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-expression</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-orm</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-web</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.springframework</groupId>    
+		        <artifactId>spring-webmvc</artifactId>    
+		        <version>${srping.version}</version>    
+		    </dependency>    
+		    <!-- spring框架包 end -->    
+		    <!-- mybatis框架包 start -->    
+		    <dependency>    
+		        <groupId>org.mybatis</groupId>    
+		        <artifactId>mybatis</artifactId>    
+		        <version>${mybatis.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.mybatis</groupId>    
+		        <artifactId>mybatis-spring</artifactId>    
+		        <version>1.2.2</version>    
+		    </dependency>    
+		    <!-- mybatis框架包 end -->    
+		    <!-- 数据库驱动 -->    
+		    <dependency>    
+		        <groupId>mysql</groupId>    
+		        <artifactId>mysql-connector-java</artifactId>    
+		        <version>5.1.35</version>    
+		    </dependency>    
+		    <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->    
+		    <dependency>    
+		        <groupId>commons-dbcp</groupId>    
+		        <artifactId>commons-dbcp</artifactId>    
+		        <version>1.4</version>    
+		    </dependency>    
+		    <!-- jstl标签类 -->    
+		    <dependency>    
+		        <groupId>jstl</groupId>    
+		        <artifactId>jstl</artifactId>    
+		        <version>1.2</version>    
+		    </dependency>    
+		    <!-- log start -->    
+		    <dependency>    
+		        <groupId>log4j</groupId>    
+		        <artifactId>log4j</artifactId>    
+		        <version>${log4j.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.slf4j</groupId>    
+		        <artifactId>slf4j-api</artifactId>    
+		        <version>${slf4j.version}</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.slf4j</groupId>    
+		        <artifactId>slf4j-log4j12</artifactId>    
+		        <version>${slf4j.version}</version>    
+		    </dependency>    
+		    <!-- log END -->    
+		    <!-- Json  -->    
+		    <!-- 格式化对象，方便输出日志 -->    
+		    <dependency>    
+		        <groupId>com.alibaba</groupId>    
+		        <artifactId>fastjson</artifactId>    
+		        <version>1.2.6</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>org.codehaus.jackson</groupId>    
+		        <artifactId>jackson-mapper-asl</artifactId>    
+		        <version>1.9.13</version>    
+		    </dependency>    
+		    <!-- 上传组件包 start -->    
+		    <dependency>    
+		        <groupId>commons-fileupload</groupId>    
+		        <artifactId>commons-fileupload</artifactId>    
+		        <version>1.3.1</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>commons-io</groupId>    
+		        <artifactId>commons-io</artifactId>    
+		        <version>2.4</version>    
+		    </dependency>    
+		    <dependency>    
+		        <groupId>commons-codec</groupId>    
+		        <artifactId>commons-codec</artifactId>    
+		        <version>1.10</version>    
+		    </dependency>    
+		    <!-- 上传组件包 end -->    
+		</dependencies>    
+		  
+		<build>    
+		  <finalName>Maven_Project</finalName>    
+		</build>    
+	    </project>    
 
 
 	    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
@@ -219,187 +398,10 @@ keywords:
 		</build>    
 	    </project>    
 
-
-	    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
-	      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">    
-		<modelVersion>4.0.0</modelVersion>    
-		<groupId>com.ssm</groupId>    
-		<artifactId>Maven_Project</artifactId>    
-		<packaging>war</packaging>    
-		<version>0.0.1-SNAPSHOT</version>    
-		<name>Maven_Project Maven Webapp</name>    
-		<url>http://maven.apache.org</url>    
-		  
-		<!-- 用来设置版本号 -->    
-		<properties>    
-		    <srping.version>4.0.2.RELEASE</srping.version>    
-		    <mybatis.version>3.2.8</mybatis.version>    
-		    <slf4j.version>1.7.12</slf4j.version>    
-		    <log4j.version>1.2.17</log4j.version>    
-		</properties>    
-		<!-- 用到的jar包 -->    
-		<dependencies>    
-		    <!-- 单元测试 -->    
-		    <dependency>    
-		        <groupId>junit</groupId>    
-		        <artifactId>junit</artifactId>    
-		        <version>4.11</version>    
-		        <!-- 表示开发的时候引入，发布的时候不会加载此包 -->      
-		        <scope>test</scope>    
-		    </dependency>    
-		    <!-- java ee包 -->    
-		    <dependency>    
-		        <groupId>javax</groupId>    
-		        <artifactId>javaee-api</artifactId>    
-		        <version>7.0</version>    
-		    </dependency>    
-		    <!-- spring框架包 start -->    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-test</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-core</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-oxm</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-tx</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-jdbc</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-aop</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-context</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-context-support</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-expression</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-orm</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-web</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.springframework</groupId>    
-		        <artifactId>spring-webmvc</artifactId>    
-		        <version>${srping.version}</version>    
-		    </dependency>    
-		    <!-- spring框架包 end -->    
-		    <!-- mybatis框架包 start -->    
-		    <dependency>    
-		        <groupId>org.mybatis</groupId>    
-		        <artifactId>mybatis</artifactId>    
-		        <version>${mybatis.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.mybatis</groupId>    
-		        <artifactId>mybatis-spring</artifactId>    
-		        <version>1.2.2</version>    
-		    </dependency>    
-		    <!-- mybatis框架包 end -->    
-		    <!-- 数据库驱动 -->    
-		    <dependency>    
-		        <groupId>mysql</groupId>    
-		        <artifactId>mysql-connector-java</artifactId>    
-		        <version>5.1.35</version>    
-		    </dependency>    
-		    <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->    
-		    <dependency>    
-		        <groupId>commons-dbcp</groupId>    
-		        <artifactId>commons-dbcp</artifactId>    
-		        <version>1.4</version>    
-		    </dependency>    
-		    <!-- jstl标签类 -->    
-		    <dependency>    
-		        <groupId>jstl</groupId>    
-		        <artifactId>jstl</artifactId>    
-		        <version>1.2</version>    
-		    </dependency>    
-		    <!-- log start -->    
-		    <dependency>    
-		        <groupId>log4j</groupId>    
-		        <artifactId>log4j</artifactId>    
-		        <version>${log4j.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.slf4j</groupId>    
-		        <artifactId>slf4j-api</artifactId>    
-		        <version>${slf4j.version}</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.slf4j</groupId>    
-		        <artifactId>slf4j-log4j12</artifactId>    
-		        <version>${slf4j.version}</version>    
-		    </dependency>    
-		    <!-- log END -->    
-		    <!-- Json  -->    
-		    <!-- 格式化对象，方便输出日志 -->    
-		    <dependency>    
-		        <groupId>com.alibaba</groupId>    
-		        <artifactId>fastjson</artifactId>    
-		        <version>1.2.6</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>org.codehaus.jackson</groupId>    
-		        <artifactId>jackson-mapper-asl</artifactId>    
-		        <version>1.9.13</version>    
-		    </dependency>    
-		    <!-- 上传组件包 start -->    
-		    <dependency>    
-		        <groupId>commons-fileupload</groupId>    
-		        <artifactId>commons-fileupload</artifactId>    
-		        <version>1.3.1</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>commons-io</groupId>    
-		        <artifactId>commons-io</artifactId>    
-		        <version>2.4</version>    
-		    </dependency>    
-		    <dependency>    
-		        <groupId>commons-codec</groupId>    
-		        <artifactId>commons-codec</artifactId>    
-		        <version>1.10</version>    
-		    </dependency>    
-		    <!-- 上传组件包 end -->    
-		</dependencies>    
-		  
-		<build>    
-		  <finalName>Maven_Project</finalName>    
-		</build>    
-	    </project>    
-
+```
 在src/main/webapp下添加配置文件：applicationContext.xml:
 
+```
 	<?xml version="1.0" encoding="UTF-8"?>
 	<beans xmlns="http://www.springframework.org/schema/beans" 
 		xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
@@ -445,7 +447,10 @@ keywords:
 	
 	</beans>
 
+```
 配置数据库连接池：db.properties
+
+```
 
 	dataSource.driverClass=com.mysql.jdbc.Driver
 	dataSource.jdbcUrl=jdbc:mysql://127.0.0.1:3306/hrm_db
@@ -456,7 +461,10 @@ keywords:
 	dataSource.minPoolSize=6
 	dataSource.initialPoolSize=5
 
+```
 整合spring mvc：springmvc-config.xml:
+
+```
 
 	<?xml version="1.0" encoding="UTF-8"?>
 	<beans xmlns="http://www.springframework.org/schema/beans"
@@ -515,8 +523,11 @@ keywords:
 	    </bean>
 	    
 	</beans>
+```
 
 修改web.xml;
+
+```
 
 	<?xml version="1.0" encoding="UTF-8"?>
 	<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -592,6 +603,8 @@ keywords:
 	  </welcome-file-list>
 	  
 	</web-app>
+
+```
 
 到这里，我们的ssm框架就完成了。
 
