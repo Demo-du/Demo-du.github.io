@@ -12,6 +12,10 @@ Every journey begins with the first step.
 
 Cease to struggle and you cease to live. 
 
+<a role="button" class="btn btn-primary hvr-grow-shadow" href="/assets/files/djj.pdf" target="_blanks">
+                <span class="flag-icon flag-icon-cn"></span> 个人简历
+            </a>
+
 ### 简介:
 
 #### 杜健健
