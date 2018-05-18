@@ -24,6 +24,12 @@ Cease to struggle and you cease to live.
 - 研究方向：计算机仿真
 - skill：java、python、c
 
+#### 实习经历
+
+- 公司：携程
+- 时间：2018年5月-8月
+- 岗位：java后台开发实习生
+
 ### 科技竞赛获奖（部分）:
 
 - 中国研究生数学建模竞赛全国二等奖
