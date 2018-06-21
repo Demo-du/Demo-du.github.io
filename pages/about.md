@@ -22,7 +22,7 @@ Cease to struggle and you cease to live.
 
 - 南京航空航天大学硕士研究生
 - 研究方向：计算机仿真
-- skill：java、python、c
+- skill：java、mysql
 
 #### 实习经历
 
@@ -54,7 +54,7 @@ Cease to struggle and you cease to live.
 
 {% for website in site.data.social %}
 * {{ website.sitename }}：[@{{ website.name }}]({{ website.url }})
-{% endfor %}
+  {% endfor %}
 
 邮箱：jianrobot@126.com
 
@@ -67,3 +67,4 @@ Cease to struggle and you cease to live.
 {% endfor %}
 </div>
 {% endfor %}
+
